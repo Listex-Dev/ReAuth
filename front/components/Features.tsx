@@ -16,48 +16,48 @@ import {
 const features = [
   {
     icon: Shield,
-    title: 'Enterprise Security',
-    description: 'Bank-grade security with OAuth 2.0 compliance, JWT tokens, and comprehensive audit logs.',
+    title: 'Корпоративная безопасность',
+    description: 'Банковский уровень безопасности, соответствие OAuth 2.0, JWT-токены и полный аудит.',
   },
   {
     icon: Code,
-    title: 'Developer Friendly',
-    description: 'Clean APIs, comprehensive documentation, and SDKs for popular programming languages.',
+    title: 'Удобно для разработчиков',
+    description: 'Чистые API, подробная документация и SDK для популярных языков программирования.',
   },
   {
     icon: Users,
-    title: 'User Management',
-    description: 'Complete user lifecycle management with profile controls and permission settings.',
+    title: 'Управление пользователями',
+    description: 'Полный жизненный цикл пользователя с управлением профилем и настройками прав.',
   },
   {
     icon: BarChart3,
-    title: 'Analytics & Insights',
-    description: 'Detailed analytics on user behavior, application usage, and security metrics.',
+    title: 'Аналитика и отчёты',
+    description: 'Детальная аналитика по пользователям, приложениям и безопасности.',
   },
   {
     icon: Lock,
-    title: 'Custom Scopes',
-    description: 'Define custom permission scopes for granular access control to your resources.',
+    title: 'Пользовательские права',
+    description: 'Определяйте собственные права доступа для гибкого управления ресурсами.',
   },
   {
     icon: Zap,
-    title: 'Fast Integration',
-    description: 'Get up and running in minutes with our quick start guides and examples.',
+    title: 'Быстрая интеграция',
+    description: 'Начните работу за считанные минуты с нашими гайдами и примерами.',
   },
   {
     icon: Globe,
-    title: 'Global CDN',
-    description: 'Fast, reliable service worldwide with 99.9% uptime SLA and global edge locations.',
+    title: 'Глобальный CDN',
+    description: 'Быстрый и надёжный сервис по всему миру с SLA 99.9% и edge-локациями.',
   },
   {
     icon: Smartphone,
-    title: 'Mobile Ready',
-    description: 'Native mobile app support with PKCE for secure authentication on mobile devices.',
+    title: 'Готово для мобильных',
+    description: 'Поддержка мобильных приложений с PKCE для безопасной аутентификации.',
   },
   {
     icon: Settings,
-    title: 'Customizable',
-    description: 'White-label options, custom branding, and flexible configuration for your needs.',
+    title: 'Гибкая настройка',
+    description: 'White-label, кастомизация бренда и гибкая конфигурация под ваши задачи.',
   },
 ];
 
@@ -67,11 +67,10 @@ export function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Everything you need for secure authentication
+            Всё для безопасной аутентификации
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            ReAuth provides all the tools and features you need to implement secure, 
-            scalable authentication for your applications.
+            ReAuth предоставляет все инструменты и возможности для внедрения безопасной и масштабируемой аутентификации в ваши приложения.
           </p>
         </div>
         

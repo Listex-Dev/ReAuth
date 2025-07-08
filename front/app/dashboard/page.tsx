@@ -23,24 +23,24 @@ export default function DashboardPage() {
       id: 1,
       appName: 'TaskFlow App',
       appIcon: '/api/placeholder/32/32',
-      timestamp: '2 hours ago',
-      status: 'success',
+      timestamp: '2 часа назад',
+      status: 'успех',
       scopes: ['openid', 'profile', 'email'],
     },
     {
       id: 2,
       appName: 'Document Manager',
       appIcon: '/api/placeholder/32/32',
-      timestamp: '1 day ago',
-      status: 'success',
+      timestamp: '1 день назад',
+      status: 'успех',
       scopes: ['openid', 'documents:write'],
     },
     {
       id: 3,
       appName: 'Financial Dashboard',
       appIcon: '/api/placeholder/32/32',
-      timestamp: '3 days ago',
-      status: 'denied',
+      timestamp: '3 дня назад',
+      status: 'отказ',
       scopes: ['openid', 'financial:read'],
     },
   ]);
@@ -50,8 +50,8 @@ export default function DashboardPage() {
       id: 1,
       name: 'TaskFlow App',
       icon: '/api/placeholder/48/48',
-      description: 'Task management application',
-      lastAccess: '2 hours ago',
+      description: 'Приложение для управления задачами',
+      lastAccess: '2 часа назад',
       scopes: ['openid', 'profile', 'email'],
       website: 'https://taskflow.example.com',
     },
@@ -59,8 +59,8 @@ export default function DashboardPage() {
       id: 2,
       name: 'Document Manager',
       icon: '/api/placeholder/48/48',
-      description: 'Document storage and management',
-      lastAccess: '1 day ago',
+      description: 'Хранение и управление документами',
+      lastAccess: '1 день назад',
       scopes: ['openid', 'documents:write'],
       website: 'https://docs.example.com',
     },
@@ -70,35 +70,35 @@ export default function DashboardPage() {
     <DashboardLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">Overview of your ReAuth account activity</p>
+          <h1 className="text-3xl font-bold text-gray-900">Панель управления</h1>
+          <p className="text-gray-600">Обзор активности вашего аккаунта ReAuth</p>
         </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Authorizations</CardTitle>
+              <CardTitle className="text-sm font-medium">Всего авторизаций</CardTitle>
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">24</div>
-              <p className="text-xs text-muted-foreground">+12% from last month</p>
+              <p className="text-xs text-muted-foreground">+12% по сравнению с прошлым месяцем</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Apps</CardTitle>
+              <CardTitle className="text-sm font-medium">Активных приложений</CardTitle>
               <Shield className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">7</div>
-              <p className="text-xs text-muted-foreground">2 new this month</p>
+              <p className="text-xs text-muted-foreground">2 новых за месяц</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Last Activity</CardTitle>
+              <CardTitle className="text-sm font-medium">Последняя активность</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -108,12 +108,12 @@ export default function DashboardPage() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Security Score</CardTitle>
+              <CardTitle className="text-sm font-medium">Оценка безопасности</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">95%</div>
-              <p className="text-xs text-green-600">Excellent</p>
+              <p className="text-xs text-green-600">Отлично</p>
             </CardContent>
           </Card>
         </div>
@@ -121,9 +121,9 @@ export default function DashboardPage() {
         {/* Recent Activity */}
         <Card>
           <CardHeader>
-            <CardTitle>Recent Authorization Activity</CardTitle>
+            <CardTitle>Последние авторизации</CardTitle>
             <CardDescription>
-              Latest authentication attempts and authorizations
+              Последние попытки входа и авторизации
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -137,8 +137,8 @@ export default function DashboardPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2">
                       <p className="font-medium text-gray-900">{auth.appName}</p>
-                      <Badge variant={auth.status === 'success' ? 'default' : 'destructive'}>
-                        {auth.status}
+                      <Badge variant={auth.status === 'успех' ? 'default' : 'destructive'}>
+                        {auth.status === 'успех' ? 'Успех' : 'Отказ'}
                       </Badge>
                     </div>
                     <p className="text-sm text-gray-600">{auth.timestamp}</p>
@@ -150,7 +150,7 @@ export default function DashboardPage() {
                       ))}
                     </div>
                   </div>
-                  {auth.status === 'denied' && (
+                  {auth.status === 'отказ' && (
                     <AlertCircle className="h-5 w-5 text-red-500" />
                   )}
                 </div>
@@ -162,9 +162,9 @@ export default function DashboardPage() {
         {/* Authorized Applications */}
         <Card>
           <CardHeader>
-            <CardTitle>Authorized Applications</CardTitle>
+            <CardTitle>Авторизованные приложения</CardTitle>
             <CardDescription>
-              Applications that have access to your ReAuth account
+              Приложения, имеющие доступ к вашему аккаунту ReAuth
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                       <ExternalLink className="h-4 w-4 text-gray-400" />
                     </div>
                     <p className="text-sm text-gray-600">{app.description}</p>
-                    <p className="text-xs text-gray-500 mt-1">Last access: {app.lastAccess}</p>
+                    <p className="text-xs text-gray-500 mt-1">Последний доступ: {app.lastAccess}</p>
                     <div className="flex items-center space-x-1 mt-2">
                       {app.scopes.map((scope) => (
                         <Badge key={scope} variant="outline" className="text-xs">
@@ -193,7 +193,7 @@ export default function DashboardPage() {
                   <div className="flex items-center space-x-2">
                     <Button variant="outline" size="sm">
                       <Settings className="h-4 w-4 mr-2" />
-                      Manage
+                      Управлять
                     </Button>
                     <Button variant="ghost" size="sm">
                       <MoreHorizontal className="h-4 w-4" />
