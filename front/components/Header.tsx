@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Shield, Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,6 +44,7 @@ export function Header() {
             <Link href="/auth/register">
               <Button>Регистрация</Button>
             </Link>
+            <ThemeToggle />
           </div>
           
           {/* Mobile Menu Button */}
@@ -87,6 +89,7 @@ export function Header() {
               <Link href="/auth/register">
                 <Button className="w-full">Регистрация</Button>
               </Link>
+              <ThemeToggle />
             </div>
           </div>
         </div>
