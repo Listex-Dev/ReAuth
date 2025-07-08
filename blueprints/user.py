@@ -10,14 +10,14 @@ def token_required(f):
         if 'Authorization' in request.headers:
             token = request.headers['Authorization'].split(' ')[-1]
         if not token:
-            return jsonify({'error': 'Token is missing!'}), 401
+            return jsonify({'error': 'Токен не найден!'}), 401
         try:
             data = jwt.decode(token, current_app.config['JWT_SECRET'], algorithms=['HS256'])
             user = User.query.get(data['user_id'])
             if not user:
-                raise Exception('User not found')
+                raise Exception('Пользователь не найден')
         except Exception as e:
-            return jsonify({'error': 'Token is invalid!'}), 401
+            return jsonify({'error': 'Токен недействителен!'}), 401
         return f(user, *args, **kwargs)
     return decorated
 
@@ -46,7 +46,7 @@ def update_profile(user):
         if field in data:
             setattr(user, field, data[field])
     db.session.commit()
-    return jsonify({'msg': 'Профиль обновлён'})
+    return jsonify({'msg': 'Профиль успешно обновлён'})
 
 # /userinfo endpoint (OAuth)
 @user_bp.route('/userinfo', methods=['GET'])
@@ -84,4 +84,4 @@ def revoke_app(user, client_id):
     AuthSession.query.filter_by(user_id=user.id, client_id=client_id).delete()
     AppScope.query.filter_by(app_id=client_id).delete()  # опционально
     db.session.commit()
-    return jsonify({'msg': 'Доступ к приложению отозван'}) 
+    return jsonify({'msg': 'Доступ к приложению успешно отозван'}) 

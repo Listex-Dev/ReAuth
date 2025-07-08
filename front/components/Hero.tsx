@@ -13,29 +13,28 @@ export function Hero() {
         <div className="text-center">
           <Badge variant="secondary" className="mb-4">
             <Shield className="h-3 w-3 mr-1" />
-            Secure OAuth 2.0 Provider
+            Безопасный OAuth 2.0 провайдер
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Secure Authentication
-            <span className="text-blue-600 block">Made Simple</span>
+            Безопасная аутентификация
+            <span className="text-blue-600 block">Просто и удобно</span>
           </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            ReAuth is a modern OAuth 2.0 provider that lets users sign in to your applications 
-            with a single, secure account. Built for developers, loved by users.
+            ReAuth — современный OAuth 2.0 провайдер, позволяющий пользователям входить в ваши приложения с помощью одной, защищённой учётной записи. Создан для разработчиков, любим пользователями.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link href="/auth/register">
               <Button size="lg" className="w-full sm:w-auto">
-                Get Started Free
+                Начать бесплатно
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/docs">
               <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                View Documentation
+                Документация
               </Button>
             </Link>
           </div>
@@ -43,15 +42,15 @@ export function Hero() {
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
             <div className="flex items-center space-x-2">
               <Check className="h-4 w-4 text-green-500" />
-              <span>Free for developers</span>
+              <span>Бесплатно для разработчиков</span>
             </div>
             <div className="flex items-center space-x-2">
               <Check className="h-4 w-4 text-green-500" />
-              <span>OAuth 2.0 compliant</span>
+              <span>Соответствие OAuth 2.0</span>
             </div>
             <div className="flex items-center space-x-2">
               <Check className="h-4 w-4 text-green-500" />
-              <span>Enterprise ready</span>
+              <span>Готово для бизнеса</span>
             </div>
           </div>
         </div>

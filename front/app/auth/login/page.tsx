@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -9,31 +10,30 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Shield, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { toast } from 'sonner';
-import { login as apiLogin } from '@/lib/api';
+import { useAuthStore } from '@/hooks/useAuthStore';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const loginStore = useAuthStore((state: any) => state.login);
+  const isLoading = useAuthStore((state: any) => state.loading);
+  const error = useAuthStore((state: any) => state.error);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     try {
-      const res = await apiLogin({ email, password });
-      if (res.access_token) {
-        localStorage.setItem('reauth_token', res.access_token);
+      await loginStore(email, password);
+      if (!error) {
         toast.success('Вы успешно вошли!');
         router.push('/dashboard');
       } else {
-        toast.error(res.error || 'Неверный email или пароль');
+        toast.error(error || 'Неверный email или пароль');
       }
     } catch (error) {
       toast.error('Ошибка входа');
     } finally {
-      setIsLoading(false);
     }
   };
 

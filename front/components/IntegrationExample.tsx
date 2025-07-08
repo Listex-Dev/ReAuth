@@ -73,7 +73,7 @@ export function IntegrationExample() {
   const copyCode = (code: string, lang: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(lang);
-    toast.success('Code copied to clipboard');
+    toast.success('Код скопирован в буфер обмена');
     setTimeout(() => setCopiedCode(null), 2000);
   };
 
@@ -82,21 +82,21 @@ export function IntegrationExample() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Integration made simple
+            Интеграция — это просто
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get started with ReAuth in minutes using our SDKs and examples for popular frameworks.
+            Начните работу с ReAuth за считанные минуты с помощью SDK и примеров для популярных фреймворков.
           </p>
         </div>
         
         <Card className="max-w-4xl mx-auto">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
-              <span>Code Examples</span>
-              <Badge variant="secondary">Ready to use</Badge>
+              <span>Примеры кода</span>
+              <Badge variant="secondary">Готово к использованию</Badge>
             </CardTitle>
             <CardDescription>
-              Choose your preferred language or framework to get started
+              Выберите язык или фреймворк для старта
             </CardDescription>
           </CardHeader>
           <CardContent>

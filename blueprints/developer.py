@@ -31,7 +31,7 @@ def create_app():
     owner_id = data.get('owner_id')  # В реальном проекте брать из auth
     scopes = data.get('scopes', [])
     if not all([name, redirect_uri, owner_id]):
-        return jsonify({'error': 'name, redirect_uri, owner_id обязательны'}), 400
+        return jsonify({'error': 'Поля name, redirect_uri и owner_id обязательны'}), 400
     client_id = secrets.token_urlsafe(16)
     client_secret = secrets.token_urlsafe(32)
     app = ClientApp(client_id=client_id, client_secret=client_secret, name=name, description=description, redirect_uri=redirect_uri, owner_id=owner_id)
@@ -62,7 +62,7 @@ def update_app(client_id):
         for scope_id in data['scopes']:
             db.session.add(AppScope(app_id=client_id, scope_id=scope_id))
     db.session.commit()
-    return jsonify({'msg': 'Приложение обновлено', 'client_secret': app.client_secret})
+    return jsonify({'msg': 'Приложение успешно обновлено', 'client_secret': app.client_secret})
 
 # Удалить приложение
 @developer_bp.route('/apps/<client_id>', methods=['DELETE'])
@@ -74,4 +74,4 @@ def delete_app(client_id):
     AppScope.query.filter_by(app_id=client_id).delete()
     db.session.delete(app)
     db.session.commit()
-    return jsonify({'msg': 'Приложение удалено'}) 
+    return jsonify({'msg': 'Приложение успешно удалено'}) 

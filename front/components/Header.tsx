@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Shield, Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,27 +23,28 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link href="/docs" className="text-gray-700 hover:text-blue-600 font-medium">
-              Documentation
+              Документация
             </Link>
             <Link href="/developer" className="text-gray-700 hover:text-blue-600 font-medium">
-              Developer
+              Для разработчиков
             </Link>
             <Link href="/pricing" className="text-gray-700 hover:text-blue-600 font-medium">
-              Pricing
+              Тарифы
             </Link>
             <Link href="/about" className="text-gray-700 hover:text-blue-600 font-medium">
-              About
+              О проекте
             </Link>
           </nav>
           
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/auth/login">
-              <Button variant="outline">Sign In</Button>
+              <Button variant="outline">Войти</Button>
             </Link>
             <Link href="/auth/register">
-              <Button>Get Started</Button>
+              <Button>Регистрация</Button>
             </Link>
+            <ThemeToggle />
           </div>
           
           {/* Mobile Menu Button */}
@@ -67,26 +69,27 @@ export function Header() {
         <div className="md:hidden border-t border-gray-200 bg-white">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link href="/docs" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
-              Documentation
+              Документация
             </Link>
             <Link href="/developer" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
-              Developer
+              Для разработчиков
             </Link>
             <Link href="/pricing" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
-              Pricing
+              Тарифы
             </Link>
             <Link href="/about" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
-              About
+              О проекте
             </Link>
           </div>
           <div className="px-2 pb-3 border-t border-gray-200 pt-4">
             <div className="flex flex-col space-y-2">
               <Link href="/auth/login">
-                <Button variant="outline" className="w-full">Sign In</Button>
+                <Button variant="outline" className="w-full">Войти</Button>
               </Link>
               <Link href="/auth/register">
-                <Button className="w-full">Get Started</Button>
+                <Button className="w-full">Регистрация</Button>
               </Link>
+              <ThemeToggle />
             </div>
           </div>
         </div>
