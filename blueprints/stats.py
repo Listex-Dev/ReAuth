@@ -17,7 +17,8 @@ def stats():
         'users': users_count,
         'apps': apps_count,
         'authorizations': auth_count,
-        'geo': geo_stats
+        'geo': geo_stats,
+        'description': 'Общая статистика по пользователям, приложениям и авторизациям.'
     })
 
 # Журнал событий (последние 100)
