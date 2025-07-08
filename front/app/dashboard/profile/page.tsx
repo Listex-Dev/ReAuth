@@ -24,9 +24,11 @@ import {
 import { toast } from 'sonner';
 import { useAuthStore } from '@/hooks/useAuthStore';
 import { updateProfile } from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 export default function ProfilePage() {
-  const { user, fetchProfile } = useAuthStore();
+  const { user, fetchProfile, token } = useAuthStore();
+  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -58,6 +60,12 @@ export default function ProfilePage() {
       });
     }
   }, [user]);
+
+  useEffect(() => {
+    if (!user || !token) {
+      router.replace('/auth/login');
+    }
+  }, [user, token, router]);
 
   const handleSave = async () => {
     setIsSaving(true);

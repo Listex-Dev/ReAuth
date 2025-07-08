@@ -18,11 +18,19 @@ import {
 import { toast } from 'sonner';
 import { useAuthStore } from '@/hooks/useAuthStore';
 import { getApps } from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 export default function ApplicationsPage() {
   const { token, user } = useAuthStore();
+  const router = useRouter();
   const [applications, setApplications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!user || !token) {
+      router.replace('/auth/login');
+    }
+  }, [user, token, router]);
 
   useEffect(() => {
     const fetchApps = async () => {

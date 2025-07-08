@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,8 @@ import {
   MoreHorizontal,
   AlertCircle
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/store/authStore';
 
 export default function DashboardPage() {
   const [recentAuthorizations] = useState([
@@ -65,6 +67,15 @@ export default function DashboardPage() {
       website: 'https://docs.example.com',
     },
   ]);
+
+  const { user, token } = useAuthStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user || !token) {
+      router.replace('/auth/login');
+    }
+  }, [user, token, router]);
 
   return (
     <DashboardLayout>
