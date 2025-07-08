@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,63 +18,33 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
+import { getApps } from '@/lib/api';
+import { toast } from 'sonner';
 
 export default function DashboardPage() {
-  const [recentAuthorizations] = useState([
-    {
-      id: 1,
-      appName: 'TaskFlow App',
-      appIcon: '/api/placeholder/32/32',
-      timestamp: '2 часа назад',
-      status: 'успех',
-      scopes: ['openid', 'profile', 'email'],
-    },
-    {
-      id: 2,
-      appName: 'Document Manager',
-      appIcon: '/api/placeholder/32/32',
-      timestamp: '1 день назад',
-      status: 'успех',
-      scopes: ['openid', 'documents:write'],
-    },
-    {
-      id: 3,
-      appName: 'Financial Dashboard',
-      appIcon: '/api/placeholder/32/32',
-      timestamp: '3 дня назад',
-      status: 'отказ',
-      scopes: ['openid', 'financial:read'],
-    },
-  ]);
-
-  const [authorizedApps] = useState([
-    {
-      id: 1,
-      name: 'TaskFlow App',
-      icon: '/api/placeholder/48/48',
-      description: 'Приложение для управления задачами',
-      lastAccess: '2 часа назад',
-      scopes: ['openid', 'profile', 'email'],
-      website: 'https://taskflow.example.com',
-    },
-    {
-      id: 2,
-      name: 'Document Manager',
-      icon: '/api/placeholder/48/48',
-      description: 'Хранение и управление документами',
-      lastAccess: '1 день назад',
-      scopes: ['openid', 'documents:write'],
-      website: 'https://docs.example.com',
-    },
-  ]);
-
   const { user, token } = useAuthStore();
   const router = useRouter();
+  const [recentAuthorizations, setRecentAuthorizations] = useState<any[]>([]);
+  const [authorizedApps, setAuthorizedApps] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user || !token) {
       router.replace('/auth/login');
+      return;
     }
+    // Загрузка истории авторизаций
+    fetch('/user/authorizations', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => setRecentAuthorizations(Array.isArray(data) ? data : []))
+      .catch(() => setRecentAuthorizations([]));
+    // Загрузка приложений
+    getApps(token, user.id)
+      .then(data => setAuthorizedApps(Array.isArray(data) ? data : []))
+      .catch(() => setAuthorizedApps([]))
+      .finally(() => setLoading(false));
   }, [user, token, router]);
 
   return (
